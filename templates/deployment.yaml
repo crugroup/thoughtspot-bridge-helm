@@ -22,8 +22,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
+            - name: thoughtspot-bridge
               containerPort: 8444
+              protocol: TCP
+            - name: https
+              containerPort: 443
               protocol: TCP
           env:
             {{- range .Values.env }}
