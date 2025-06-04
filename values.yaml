@@ -53,9 +53,9 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: http
+    port: 8444
 readinessProbe:
   httpGet:
     path: /
-    port: http
+    port: 8444
 
