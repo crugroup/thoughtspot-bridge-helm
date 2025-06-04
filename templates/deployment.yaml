@@ -21,17 +21,24 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
+            ports:
             - name: bridge
               containerPort: 8444
               protocol: TCP
             - name: https
               containerPort: 443
               protocol: TCP
-          env:
+            env:
             {{- range .Values.env }}
             - name: {{ .name }}
+              {{- if .value }}
               value: {{ .value | quote }}
+              {{- else if and .secretName .secretKey }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .secretName }}
+                  key: {{ .secretKey }}
+              {{- end }}
             {{- end }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
