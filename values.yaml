@@ -14,6 +14,10 @@ image:
 
 env:
   # This is for setting environment variables in the container more information can be found here: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+  # Mount secrets in Kubernetes secret resource 'bridge-secrets' in the same namespace before deployment.
+  # Direct value input for testing (not recommended for production):
+  # - name: MODE_ACCESS_TOKEN
+  #  value: <secret-access-token>
   - name: MODE_ACCESS_TOKEN
     valueFrom:
       secretKeyRef:
