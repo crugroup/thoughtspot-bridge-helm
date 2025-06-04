@@ -33,11 +33,9 @@ spec:
           - name: {{ .name }}
             {{- if .value }}
             value: {{ .value | quote }}
-            {{- else if and .secretName .secretKey }}
+            {{- else if .valueFrom }}
             valueFrom:
-              secretKeyRef:
-                name: {{ .secretName }}
-                key: {{ .secretKey }}
+              {{- toYaml .valueFrom | nindent 16 }}
             {{- end }}
           {{- end }}
         {{- with .Values.livenessProbe }}
