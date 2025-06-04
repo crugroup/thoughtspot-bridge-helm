@@ -52,7 +52,7 @@ service:
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 8444
   protocol: TCP
-  targetPort: 8444``
+  targetPort: 8444
 
 resources: {}
 
