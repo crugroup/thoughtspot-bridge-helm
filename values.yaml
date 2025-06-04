@@ -54,4 +54,4 @@ livenessProbe:
   httpGet:
     path: /
     port: 443
-readinessProbe: {}
+readinessProbe: 
