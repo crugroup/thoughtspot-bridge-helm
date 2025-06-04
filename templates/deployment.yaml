@@ -28,18 +28,18 @@ spec:
           - name: https
             containerPort: 443
             protocol: TCP
-          env:
-            {{- range .Values.env }}
-            - name: {{ .name }}
-              {{- if .value }}
-              value: {{ .value | quote }}
-              {{- else if and .secretName .secretKey }}
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .secretName }}
-                  key: {{ .secretKey }}
-              {{- end }}
+        env:
+          {{- range .Values.env }}
+          - name: {{ .name }}
+            {{- if .value }}
+            value: {{ .value | quote }}
+            {{- else if and .secretName .secretKey }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .secretName }}
+                key: {{ .secretKey }}
             {{- end }}
+          {{- end }}
         {{- with .Values.livenessProbe }}
         livenessProbe:
           {{- toYaml . | nindent 12 }}
