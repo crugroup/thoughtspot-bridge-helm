@@ -53,9 +53,4 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: 8444
-readinessProbe:
-  httpGet:
-    path: /
-    port: 8444
-
+    port: 443
